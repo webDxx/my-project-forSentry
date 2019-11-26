@@ -1,0 +1,953 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
+    <title>海之兰大型水上乐园&ldquo;优秀员工&rdquo;评选活动</title>
+
+    <script>
+        //欢迎页 来源页面判断
+        var refer = document.referrer;
+        var current_url_local = sessionStorage.getItem('current_url');
+        sessionStorage.setItem('current_url', window.location.href);
+            </script>
+
+    <link href="/static/green/css/bootstrap.css" rel="stylesheet">
+    <link href="/static/green/css/font-awesome.css" rel="stylesheet">
+    <link href="/static/green/css/iconfont.css" rel="stylesheet">
+    <link href="/static/green/css/swiper.css" rel="stylesheet">
+    <link href="/static/js/layui/css/layui.css" rel="stylesheet">
+    <link href="/static/green/css/bass.css?v=1" rel="stylesheet">
+    <link href="/static/green/css/color1.css" rel="stylesheet">
+    <link href="/static/green/css/player.css" rel="stylesheet">
+    <link href="/static/green/css/pop.css?v=12x" rel="stylesheet">
+    <script src="http://res.wx.qq.com/open/js/jweixin-1.4.0.js" type="text/javascript" charset="utf-8"></script>
+    <script src="/static/green/js/jquery_v3.3.1.js"></script>
+    <script src="/static/green/js/swiper.js"></script>
+    <style>
+        .gt_holder.gt_popup .gt_mask {
+            z-index: 5;
+        }
+
+        #embed-captcha {
+            position: fixed;
+            z-index: 100120;
+            left: 50%;
+            top: 50%;
+            -webkit-transform: translate(-50%, -50%);
+            -ms-transform: translate(-50%, -50%);
+            -o-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+        }
+    </style>
+</head>
+<body class="body-bg">
+<div id="embed-captcha"></div>
+<!-- 投票成功后弹窗 -->
+<div class="ewm-in-pop" style="z-index: 1800;"></div>
+
+<!-- 顶部滚动通知 -->
+<div class="notice bg1-color">
+    <p class="notice-text text1-color">
+        <marquee scrollamount=5 FONT>海之兰大型水上乐园&ldquo;优秀员工&rdquo;评选活动</marquee>
+    </p>
+</div>
+<style>
+    .post-load{
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        color: #f5f5f5;
+        font-size: 30px;
+        -webkit-transform: translate(-50%,-50%);
+        -ms-transform: translate(-50%,-50%);
+        -o-transform: translate(-50%,-50%);
+        transform: translate(-50%,-50%);
+    }
+</style>
+<div class="hb-bg" style="position:fixed;width: 100%;height: 100%;background-color: rgba(0,0,0,0.8);z-index:1100;display: none;">
+    <div class="post-load"><i class="fa fa-spinner fa-pulse"></i></div>
+    <div style="width:260px;margin:-195px 0 0 -130px;height:390px;position: absolute;top:50%;left:50%;">
+        <p class="hb-hide" style="cursor:pointer;display:none;font-size: 26px;color: #ddd;position: absolute;width:30px;height:30px;text-align:center;line-height:30px;right:-26px;top:-26px;"><i class="fa fa-times-circle"></i></p>
+        <img id="hb-show-img" src="" style="width:100%;" alt="">
+    </div>
+    <div id="hb-back" style="opacity:1;width:600px;height:900px;margin:0 auto;position:relative;top: -999999px;left: -999999px; background-size:100% 100%;padding-top:1px;">
+        <div style="width:80%;background-color:#b5f2eb;padding:2%;box-sizing:border-box;margin:10% auto 0;">
+            <p style="text-align:center;font-size:28px;color:#f0a7d2;font-weight:bold;line-height: 36px;max-height: 72px;overflow: hidden;">海之兰大型水上乐园&ldquo;优秀员工&rdquo;评选活动</p>
+        </div>
+        <div style="width:180px;height:180px;border:10px solid #b5f2eb;box-sizing:border-box;border-radius:50%;overflow:hidden;margin:40px auto 0;"><img class="hb-usre-img" src="" style="width:100%;vertical-align:middle;height:100%;"></div>
+        <div style="width:80%;margin:20px auto 0;text-align:center;font-size:28px;font-weight:bold;letter-spacing:1px;color:#f0a7d2;">
+            <p style="" class="hb-competitor-num"></p>
+            <p style="margin-top:10px;" class="hb-competitor-name"></p>
+        </div>
+        <div style="position:absolute;width:30%;bottom:22%;left:35%;"><img class="hb-qrcode" src="" style="width:100%;vertical-align:middle;"></div>
+    </div>
+</div>
+<script type="text/javascript" src="/static/js/html2canvas.js"></script>
+<script>
+        $(document).on("click",".hb-hide",function () {
+            $(".hb-bg").hide();
+        });
+        $(document).on("click", ".create-poster", function () {
+            $.post('/green/competitor/gethbinfo/id/v8d484zzx/com_id/7bu4qmjxq.html', function (result) {
+                if (result.code == 1) {
+                    $("#hb-back").css("background-image", "url("+result.data.back_img+")");
+                    $(".hb-usre-img").prop("src", result.data.com_img);
+                    $(".hb-qrcode").prop("src", result.data.qrcode);
+                    $(".hb-competitor-num").html(result.data.com_num + "号");
+                    $(".hb-competitor-name").html(result.data.com_name);
+                    $(".hb-bg").show();
+                    html2canvas(document.getElementById("hb-back")).then(function (canvas) {
+                        var dataUrl = canvas.toDataURL();
+                        var hb_img = document.getElementById("hb-show-img");
+                        hb_img.src = dataUrl;
+                        $(".hb-hide").show();
+                        $.post("/green/competitor/unlinklogoimg/id/v8d484zzx.html",{'rand':result.data.rand},function (con) {
+                            console.log(con);
+                        })
+                    });
+                } else {
+                    layer.msg(result.msg);
+                }
+            });
+        });
+</script>
+<!-- 选手音乐 -->
+<!-- 音乐功能 -->
+<!-- 选手音乐 -->
+<!-- 背景音乐 -->
+<div class="music music-on music-right">
+    <p></p>
+    <audio src="https://other-web-ra01-sycdn.kuwo.cn/9d02412a7a67d0cfeff7b1212794c035/5d36f21d/resource/n2/128/32/87/2307088267.mp3" id="audio-right" autoplay preload loop="loop"></audio>
+</div>
+<script>
+    var audio_url1 = '';
+        var audio_url2 = '';
+        audio_url2 = 'https://other-web-ra01-sycdn.kuwo.cn/9d02412a7a67d0cfeff7b1212794c035/5d36f21d/resource/n2/128/32/87/2307088267.mp3';
+        //音乐开关
+    $(document).on('click','.music',function(){
+        if($(this).hasClass("music-left")){
+            return false;
+        }
+        if($(this).hasClass('music-on')){
+            $(this).removeClass('music-on').addClass('music-off');
+        }else{
+            $(this).removeClass('music-off').addClass('music-on');
+        }
+
+    });
+
+    document.addEventListener("WeixinJSBridgeReady", function () {
+        var left_audit = document.getElementById('audio-left');
+        left_audit.loop = false;
+        //监控音频播放完毕事件
+        left_audit.addEventListener('ended', function () {
+            setTimeout(function () {
+                left_audit.play();
+            }, 3000);
+        }, false);
+    }, false);
+    // 背景音乐
+    $(document).on('click','.music-right',function(){
+        var obj = $(this).children('audio');
+        //判断是正在播放
+        if($(this).hasClass('music-on')){
+            obj.attr('src',audio_url2);
+        }else{
+            obj.attr('src','');
+        }
+    });
+    //ios微信音乐播放
+    function audioAutoPlay(id){
+        if (audio_url1 != '') {
+            var audio = document.getElementById('audio-left');
+            audio.play();
+            document.addEventListener("WeixinJSBridgeReady", function () {
+                audio.play();
+            }, false);
+        }
+
+    }
+    function audioAutoPlay1(id) {
+        if (audio_url2 != '') {
+            var audio = document.getElementById('audio-right');
+            audio.play();
+            document.addEventListener("WeixinJSBridgeReady", function () {
+                audio.play();
+            }, false);
+        }
+    }
+    audioAutoPlay('audio-left');
+    audioAutoPlay1('audio-right');
+</script>
+
+<!-- 投诉按钮 -->
+<div class="gift-comp comp-color"><a href="/index/complaint/index/id/v8d484zzx/com_id/18041.html">投诉</a></div>
+<!-- 轮播图 -->
+<!-- 轮播图 -->
+<div class="banner">
+    <div class="swiper-container lunbo">
+        <div class="swiper-wrapper">
+                        <div class="swiper-slide banner_img">
+                                <a href="javascript:;">
+                    <img src="/uploads/app/1/2/20190718/73bdb133f63ab7c36f273980455b5357.jpg">
+                </a>
+            </div>
+                                </div>
+        <div class="swiper-pagination"></div>
+    </div>
+</div>
+<script>
+    if ($(".lunbo .banner_img").length > 1) {
+        //轮播图
+        var mySwiper = new Swiper('.lunbo', {
+            autoplay: {delay: 3000},   //切换时间
+            direction: 'horizontal',   //切换方向
+            loop: true,         		//循环轮播
+            initialSlide: 0,      	//初始化展示
+            grabCursor: true,      	//鼠标移动变成手型
+            roundLengths: true,    	//参数取整
+            autoHeight: true,       	//高度随内容变化
+            preloadImages: false,    	//图片加载
+            pagination: {				//翻页器
+                el: '.swiper-pagination',
+            },
+        });
+    }
+</script>
+<!-- 网络人气榜 -->
+<div class="player-ranking">
+    <div class="player-ranking-tit txt0-2-user"> 网络人气榜 </div>
+    <ul class="player-ranking-main txt0-1-user">
+                <a href="/index/competitor/index/id/v8d484zzx/com_id/7d18qz66i.html">
+            <li>
+                <p class="p1"><img src="/static/green/images/hg1.png"></p>
+                <p class="p2"><img src="/uploads/app/1/2/20190718/09c873076f85af583283172910166413.jpg"></p>
+                <p class="p3 txt0-2-user">褚梦谨</p>
+                <p class="p4">赞数</p>
+                <p class="p5">1962</p>
+            </li>
+        </a>
+                <a href="/index/competitor/index/id/v8d484zzx/com_id/74wdqmjem.html">
+            <li>
+                <p class="p1"><img src="/static/green/images/hg2.png"></p>
+                <p class="p2"><img src="/uploads/app/1/2/20190718/83502f947a46a77cccdf7f5e02240aa9.jpg"></p>
+                <p class="p3 txt0-2-user">孙萱萱</p>
+                <p class="p4">赞数</p>
+                <p class="p5">1464</p>
+            </li>
+        </a>
+                <a href="/index/competitor/index/id/v8d484zzx/com_id/7uc5qz66z.html">
+            <li>
+                <p class="p1"><img src="/static/green/images/hg3.png"></p>
+                <p class="p2"><img src="/uploads/app/1/2/20190718/8a54f4d7dc7d0c28a829f296cdad7d0d.jpg"></p>
+                <p class="p3 txt0-2-user">贺娜娜</p>
+                <p class="p4">赞数</p>
+                <p class="p5">307</p>
+            </li>
+        </a>
+                <a href="/index/competitor/index/id/v8d484zzx/com_id/7d5cqmjez.html">
+            <li>
+                <p class="p1"><img src="/static/green/images/hg4.png"></p>
+                <p class="p2"><img src="/uploads/app/1/2/20190718/07d499974a3e6f79a41f1bc47d8e871f.jpg"></p>
+                <p class="p3 txt0-2-user">井美佳</p>
+                <p class="p4">赞数</p>
+                <p class="p5">251</p>
+            </li>
+        </a>
+                <a href="/index/competitor/index/id/v8d484zzx/com_id/7wucqmjey.html">
+            <li>
+                <p class="p1"><img src="/static/green/images/hg5.png"></p>
+                <p class="p2"><img src="/uploads/app/1/2/20190718/353cfe4a971f35d6a021586b94f54221.jpg"></p>
+                <p class="p3 txt0-2-user">陈润新</p>
+                <p class="p4">赞数</p>
+                <p class="p5">237</p>
+            </li>
+        </a>
+            </ul>
+</div>
+<!-- 选手数据 -->
+<div class="players-num bor3-tit-user bor1-tit-user bg1-user txt1-user">
+    <div class="list one bor2-tit-user">
+        <p class="p1"><i class="fa fa-user"></i>编号</p>
+        <p class="p2">23</p>
+    </div>
+    <div class="list two bor2-tit-user">
+        <p class="p1"><i class="fa fa-hand-o-up"></i>点赞数</p>
+        <p class="p2">92</p>
+    </div>
+    <div class="list three bor2-tit-user">
+        <p class="p1"><i class="fa fa-eye"></i>热度</p>
+        <p class="p2">197</p>
+    </div>
+    </div>
+<!-- 开启显示礼物点数时 -->
+<!-- 票数差 -->
+<!--   <div class="list four"></div> -->
+<div class="players-gap txt2-user">
+    <p class="p1"><span class="icon-tit"><i class="icon iconfont"></i></span>排名：第8名</p>
+    <p class="list">
+        <span class="icon-tit"><i class="fa fa-hand-o-up"></i></span>与第一名差 1870 <span class="call-unit">赞</span>与上一名差82<span
+            class="call-unit">赞</span>
+    </p>
+</div>
+<!-- 选手报名字段信息 -->
+    <div class="players-field txt3-user bor3-user">
+                <div class="list">
+            <span>选手名称：</span>邓昭        </div>
+            </div>
+<!-- 选手照片 -->
+    <div class="player-banner">
+        <div class="swiper-container player-banner-lunbo">
+            <div class="swiper-wrapper">
+                                <div class="swiper-slide"><a href="#"><img src="/uploads/app/1/2/20190718/a65fd74864d2e61b818c8c624b29a832.jpg"></a></div>
+                            </div>
+            <div class="swiper-button-prev swiper-button-white"></div>
+            <div class="swiper-button-next swiper-button-white"></div>
+        </div>
+    </div>
+<!-- 选手介绍 -->
+<!-- 广告图 -->
+    <div class="player-sign-up bg5-user create-poster">
+        <a href="javascript:;" class="txt5-user">生成海报</a>
+    </div>
+
+<!-- 礼物列表 -->
+<!-- 评论 -->
+<div class="player-comment">
+    <div class="player-comment-tit">
+        <p class="p1"></p>
+        <p class="p2">评论区</p>
+        <p class="p1"></p>
+    </div>
+    <div class="player-comment-write txt7-1-user">
+        <p><i class="fa fa-angle-double-down" style="cursor: pointer;"></i><span>写评论</span></p>
+    </div>
+    <div class="player-comment-input" style="display:none;">
+        <textarea placeholder="请写下您的评论！" name="commentinput"></textarea>
+        <p class="p1"><span>0</span><span>/</span><span>30</span></p>
+        <p class="p2 bg7-1-user">发送</p>
+    </div>
+
+    <ul class="player-comment-list">
+        <!-- 评论列表 -->
+            </ul>
+
+            <div class="player-comment-none">没有评论记录！</div>
+        </div>
+<div class="player-comment-blank"></div>
+<!-- 礼物弹幕 -->
+<!-- 页面弹幕 -->
+    <!--礼物弹幕 -->
+<div class="left-barrage">
+    <div class="p1"></div>
+    <div class="p2"></div>
+</div>
+<!--评论弹幕-->
+<div class="body-barrage"></div>
+<div class="body-barrage-on">弹<i class="fa fa-ban" aria-hidden="true"></i></div>
+<script>
+
+    //循环次数
+    var barrage_page = 1;
+    var barrage_state = 0;
+    var time_line = [];
+    //评论弹幕
+    function bodyBarrage(){
+        if(barrage_state == 1){
+            return false;
+        }
+                var url = '/green/index/getBarrager?id=v8d484zzx&com_id=7bu4qmjxq';
+                $.ajax({
+            url:url,
+            type:"post",
+            data:{"p":barrage_page},
+            success:function(result){
+                if (result.code == 1) {
+                    var temp_key = 0;
+                    $.each(result.data,function (key,item) {
+                        temp_key++;
+                        var timeoutInt = setTimeout(function () {
+                            runBarrage(item.content,result.data.length);
+                        },temp_key * 1000);
+                        time_line.push(timeoutInt);
+                    });
+                   var timeoutInt2 = setTimeout(function () {
+                        if (result.data.length >= result.limit) {
+                            barrage_page++;
+                            bodyBarrage();
+                        } else {
+                            if (barrage_page === 1 && result.data.length === 0) {
+                                return false;
+                            } else {
+                                barrage_page = 1;
+                                bodyBarrage();
+                            }
+                        }
+                    },temp_key * 1000);
+                    time_line.push(timeoutInt2);
+                }else {
+                    layer.msg(result.msg);
+                    barrage_state = 1;
+                    return false;
+                }
+            }
+        });
+    }
+    //创建一个弹幕
+    function runBarrage(msg,length) {
+        var id = Math.floor(Math.random() * length);
+        var str = '<div class="msg">'+msg+'</div>';
+        var top1 = Math.floor(Math.random() * $(window).height()/3);
+        var barrage = $('.body-barrage');
+        $(str).appendTo(barrage);
+        barrage.children(".msg:last").css("right","-"+barrage.children(".msg:last").css("width"));
+        barrage.children(".msg:last").css({top:top1})
+                .animate({right:'105%'},10000,function(){
+                    $(this).remove();
+                });
+    }
+
+            //评论弹幕开关
+            $(document).on('click', '.body-barrage-on', function () {
+                barrage_state = barrage_state == 1 ? 0 : 1;
+                if (barrage_state == 0) {
+                    $.each(time_line, function (k, val) {
+                        clearTimeout(val);
+                    });
+                    bodyBarrage();
+                }
+                $(this).children().toggle();
+                $('.body-barrage').toggle().children().remove();
+            });
+
+    // 调用页面弹幕和左侧页面
+    $(function () {
+        bodyBarrage();
+    });
+</script>
+
+
+<!-- 技术支持 -->
+<!-- 技术支持 -->
+<div class="tech-sup">
+                <a href="/index/support/index/id/v8d484zzx.html">
+                <div class="tech-sup-img" style="display: block;">
+                    <img src="/uploads/app/1/3/20190513/1ca7b4480edccb42433f32a28929fe56.jpg" alt="">
+                </div>
+            </a>
+        </div>
+
+<div style="height: 30px;"></div>
+<!-- 底部送礼物按钮 -->
+<div class="player-foot bor8-user bg8-user">
+    <a href="/index/index/index/id/v8d484zzx.html">
+        <div class="left  txt8-user"><span class="icon iconfont txt8-1-user"></span>回首页</div>
+    </a>
+    <div class="center bg8-user txt8-1-user bg8-1-user">
+        <div class="player-foot-bg bor2-1-user bg8-2-user add-vote">
+            <p class="p1"><img src="/static/green/images/pinkheart.png" alt=""></p>
+            <p class="p2">点赞</p>
+        </div>
+    </div>
+        <a href="http://huo.zun.yesnet.com.cn/index/gift/imggift/id/v8d484zzx/com_id/7bu4qmjxq/myid/oV6Hw04k2Xz2H3TqMs9IR-PuNuJs.html">
+        <div class="right txt8-user"><i class="fa fa-gift txt8-1-user" style="position: relative;top: 1px;"></i>礼物</div>
+    </a>
+    </div>
+<script>
+    wx.config($.parseJSON('{"debug":false,"beta":false,"jsApiList":["onMenuShareQZone","onMenuShareWeibo","onMenuShareTimeline","onMenuShareAppMessage","onMenuShareQQ","updateAppMessageShareData","updateTimelineShareData"],"appId":"wx411928e879f8e7cd","nonceStr":"6rrMO9P7b7","timestamp":1563884742,"url":"http:\/\/huo.zun.yesnet.com.cn\/index\/urls\/player\/key\/7bu4qmjxq.html","signature":"4de71877ccb0e5493350122eebc2e03874688c8b"}'));
+    wx.ready(function () {
+        //分享到朋友圈
+        wx.onMenuShareTimeline({
+            title: '我是邓昭，编号23，我正在参加海之兰大型水上乐园“优秀员工”评选活动', // 分享标题
+            link: 'http://huo.zun.yesnet.com.cn/index/urls/player/key/7bu4qmjxq.html', // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+            imgUrl: 'http://huo.zun.yesnet.com.cn/uploads/app/1/2/20190718/a65fd74864d2e61b818c8c624b29a832.jpg', // 分享图标
+            success: function () {
+                // 用户点击了分享后执行的回调函数
+            }
+        });
+        //分享给朋友
+        wx.onMenuShareAppMessage({
+            title: '我是邓昭，编号23，我正在参加海之兰大型水上乐园“优秀员工”评选活动', // 分享标题
+            desc: '我是邓昭，编号23，我正在为海之兰大型水上乐园代言，请为我加油点赞吧！', // 分享描述
+            link: 'http://huo.zun.yesnet.com.cn/index/urls/player/key/7bu4qmjxq.html', // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+            imgUrl: 'http://huo.zun.yesnet.com.cn/uploads/app/1/2/20190718/a65fd74864d2e61b818c8c624b29a832.jpg', // 分享图标
+            success: function () {
+
+            }
+        });
+        //分享到QQ
+        wx.onMenuShareQQ({
+            title: '我是邓昭，编号23，我正在参加海之兰大型水上乐园“优秀员工”评选活动', // 分享标题
+            desc: '我是邓昭，编号23，我正在为海之兰大型水上乐园代言，请为我加油点赞吧！', // 分享描述
+            link: 'http://huo.zun.yesnet.com.cn/index/urls/player/key/7bu4qmjxq.html', // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+            imgUrl: 'http://huo.zun.yesnet.com.cn/uploads/app/1/2/20190718/a65fd74864d2e61b818c8c624b29a832.jpg', // 分享图标
+            success: function () {
+                // 用户确认分享后执行的回调函数
+            }
+        });
+        //分享到腾讯微博
+        wx.onMenuShareWeibo({
+            title: '我是邓昭，编号23，我正在参加海之兰大型水上乐园“优秀员工”评选活动', // 分享标题
+            desc: '我是邓昭，编号23，我正在为海之兰大型水上乐园代言，请为我加油点赞吧！', // 分享描述
+            link: 'http://huo.zun.yesnet.com.cn/index/urls/player/key/7bu4qmjxq.html', // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+            imgUrl: 'http://huo.zun.yesnet.com.cn/uploads/app/1/2/20190718/a65fd74864d2e61b818c8c624b29a832.jpg', // 分享图标
+            success: function () {
+                // 用户确认分享后执行的回调函数
+            }
+        });
+        //分享到QQ空间
+        wx.onMenuShareQZone({
+            title: '我是邓昭，编号23，我正在参加海之兰大型水上乐园“优秀员工”评选活动', // 分享标题
+            desc: '我是邓昭，编号23，我正在为海之兰大型水上乐园代言，请为我加油点赞吧！', // 分享描述
+            link: 'http://huo.zun.yesnet.com.cn/index/urls/player/key/7bu4qmjxq.html', // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+            imgUrl: 'http://huo.zun.yesnet.com.cn/uploads/app/1/2/20190718/a65fd74864d2e61b818c8c624b29a832.jpg', // 分享图标
+            success: function () {
+                // 用户确认分享后执行的回调函数
+            }
+        });
+    });
+</script>
+<script>
+    // // 更换颜色
+    function changeColor(bg,btn,nav,word){
+        var str ='<style type="text/css">'+
+                '.body-bg1{background:'+bg+'}'+
+                '.bg1-color{background-color:'+btn+';}'+
+                '.bg4-color{background-color:'+btn+';}'+
+                '.border6-3-color{border-color: '+btn+';}'+
+                '.text6-3-color{color: '+btn+';}'+
+                '.txt8-1-user{color: '+btn+';}'+
+                '.bg8-1-user{background-color:'+btn+';}'+
+                '.bor2-1-user{border-color:'+btn+';}'+
+                '.bg1-prize{background-color:'+btn+';}'+
+                '.bg5-user{background-color:'+btn+';}'+
+                '.txt1-bank{color:#fff;background-color:'+btn+'}'+
+                '.txt2-list-bank{color:#999;}'+
+                '.bg-sign{background-color:'+btn+';}'+
+                '.layui-form-select dl dd.layui-this{background-color: '+btn+';}'+
+                '.page-num .pagination li.active span {border: 0;background: '+btn+';height: 24px;'+
+                'line-height: 24px;padding: 0 6px;border-radius: 2px;overflow: hidden;z-index: 0;}'+
+                '.pagination .active a:hover {border: none;background-color: '+btn+';}'+
+                '.text8-color-active{color:'+nav+';'+'opacity:1;}'+
+                '.foot-nav a:hover{color:'+nav+';'+'opacity:1;}'+
+                '.text3-1-color{color: '+word+';}'+
+                '.text3-2-color{color: '+word+';}'+
+                '.bor3-user{border-color: '+word+';}'+
+                '.layui-flow-more{color: '+word+';}'+
+                '.layui-flow-more a cite{color: #FFFFFF;background-color: '+btn+';}'+
+                '.time-bor-color{border-color: '+word+';}'+
+                '.border5-color{border-color: '+word+';}'+
+                '.text5-color{color: '+word+';}'+
+                '.txt0-2-user{color: '+word+';}'+
+                '.icon-tit{color: '+word+';}'+
+                '.player-intro .p1{color: '+word+';}'+
+                '.text-gift-color{color: '+word+';}'+
+                '.txt7-1-user{color: '+word+';}'+
+                '.bg7-1-user{background-color: '+btn+';}'+
+                '</style>';
+        $(str).appendTo($('body'));
+    };
+    var tpl_bg = "#FBD7A3";
+    var tpl_btn = "#DAB96B";
+    var tpl_nav = "#D48A60";
+    var tpl_word = "#993333";
+    changeColor(tpl_bg, tpl_btn, tpl_nav,tpl_word);
+</script>
+<script src="/static/green/js/bootstrap.min.js"></script>
+<script src="/static/js/layer/layer.js"></script>
+<script src="/static/green/js/bass.js"></script>
+<script src="/static/js/gt.js"></script>
+<script>
+    var id = 'v8d484zzx';
+    var competitor_id = '7bu4qmjxq';
+    var pagesize = 3;
+    //评论列表
+    var comment_page = 2;
+    //礼物列表
+    var order_page = 2;
+    //是否还有更多
+    var is_more_player = 1;
+    //是否还有更多
+    var is_more_comment = 1;
+    //防重复点击
+    var is_order_click = 1;
+    //放重复点击
+    var is_comment_click = 1;
+    //订单json数据
+    $(document).on("click", ".player-gift-more", function (ev) {
+        if(is_order_click == 0){
+            return false;
+        }
+        if(is_more_player == 0) {
+            var more_text = $.trim($(".player-gift-more > span").text());
+            if("更多" == more_text){
+                $(".main > li[data-type=1]").show();
+                $(".player-gift-more > i").removeClass("fa-angle-double-down").addClass("fa-angle-double-up");
+                $(".player-gift-more > span").html("收起");
+            }else{
+                $(".main > li[data-type=1]").hide();
+                $(".player-gift-more > i").removeClass("fa-angle-double-up").addClass("fa-angle-double-down");
+                $(".player-gift-more > span").html("更多");
+            }
+            return false;
+        }
+        is_order_click = 0;
+        $.ajax({
+            type: "POST",//请求方式
+            url: "/green/competitor/orderlist.html",//地址，就是json文件的请求路径
+            data: {id: id, com_id: competitor_id, pagesize: pagesize, page: order_page},
+            dataType: "json",//数据类型可以为 text xml json  script  jsonp
+            success: function (result) {
+                is_order_click = 1;
+                if (result.code == 0) {
+                    $('.player-comment-none').show();
+                    $('.player-gift-none').hide();
+                    return false;
+                }
+                var html = '';
+                for (var i in result.data) {
+                    html += '<li class="bor6-user" data-id="' + result.data[i].id + '" data-type="1">';
+                    html += '     <div class="left">';
+                    html += '         <img src="' + result.data[i].wechat_head + '">';
+                    html += '     </div>';
+                    html += '     <div class="right txt6-2-user">';
+                    html += '         <p class="p1 txt6-1-user">' + result.data[i].wechat_name + '</p>';
+                    html += '         <p class="p2">送了' + result.data[i].goods_name + 'X' + result.data[i].number + ' <img src="' + result.data[i].goods_image + '"> </p>';
+                    html += '         <p class="p3">' + result.data[i].create_time + '</p>';
+                    html += '     </div>';
+                    html += '</li>';
+                }
+                $('.main').append(html);
+                //是否所有的数据已显示完成
+                var order_count = $('.bor6-user').length;
+                if(order_count < result.count){
+                    is_more_player = 1;
+                    $(".player-gift-more > i").removeClass("fa-angle-double-up").addClass("fa-angle-double-down");
+                    $(".player-gift-more > span").html("更多");
+                } else {
+                    is_more_player = 0;
+                    $(".player-gift-more > i").removeClass("fa-angle-double-down").addClass("fa-angle-double-up");
+                    $(".player-gift-more > span").html("收起");
+                }
+                order_page++;
+            },error:function () {
+                is_order_click = 1;
+            }
+        })
+    })
+
+    //评论json数据
+    $(document).on("click", ".player-comment-more", function (ev) {
+        if(is_comment_click == 0){
+            return false;
+        }
+        if(is_more_comment == 0) {
+            var comment_more_text = $.trim($(".player-comment-more > span").text());
+            if("更多" == comment_more_text){
+                $(".player-comment-list > li[data-type=1]").show();
+                $(".player-comment-more > i").removeClass("fa-angle-double-down").addClass("fa-angle-double-up");
+                $(".player-comment-more > span").html("收起");
+            }else{
+                $(".player-comment-list > li[data-type=1]").hide();
+                $(".player-comment-more > i").removeClass("fa-angle-double-up").addClass("fa-angle-double-down");
+                $(".player-comment-more > span").html("更多");
+            }
+            return false;
+        }
+        is_comment_click = 0;
+        $.ajax({
+            type: "POST",//请求方式
+            url: "/green/competitor/commentlist.html",//地址，就是json文件的请求路径
+            data: {id: id, com_id: competitor_id, pagesize: pagesize, page: comment_page},
+            dataType: "json",//数据类型可以为 text xml json  script  jsonp
+            success: function (result) {
+                is_comment_click = 1;
+                if (result.code == 0) {
+                    return false;
+                }
+                var html = '';
+                for (var i in result.data) {
+                    html += '<li class="bor7-1-user" data-type="1">';
+                    html += '     <div class="left">';
+                    html += '         <img src="' + result.data[i].avatar + '">';
+                    html += '     </div>';
+                    html += '     <div class="right txt6-2-user">';
+                    html += '         <p class="p1 txt7-1-user">' + result.data[i].content + '</p>';
+                    html += '         <p class="p2 txt7-4-user">' + result.data[i].create_time + '</p>';
+                    html += '     </div>';
+                    html += '</li>';
+                }
+                $('.player-comment-list').append(html);
+                //是否所有的数据已显示完成
+                var comment_count = $('.bor7-1-user').length;
+                if(comment_count < result.count){
+                    is_more_comment = 1;
+                    $(".player-comment-more > i").removeClass("fa-angle-double-up").addClass("fa-angle-double-down");
+                    $(".player-comment-more > span").html("更多");
+                } else {
+                    is_more_comment = 0;
+                    $(".player-comment-more > i").removeClass("fa-angle-double-down").addClass("fa-angle-double-up");
+                    $(".player-comment-more > span").html("收起");
+                }
+                comment_page++;
+            },error:function () {
+                is_comment_click = 1;
+            }
+        })
+    })
+
+    ///评论
+    //点击写评论按钮
+    $(document).on('click', '.player-comment-write p', function(){
+        console.log('写评论');
+        var obj = $(this).children('i');
+        var objSp = $(this).children('span');
+        //判断写评论按钮是否向上
+        if (obj.hasClass('fa-angle-double-down')) {
+            //箭头向上变成向下
+            obj.removeClass('fa-angle-double-down').addClass('fa-angle-double-up');
+            //文字变成收起
+            objSp.html('收起');
+            //输入框显示
+            $('.player-comment-input').show(200);
+        } else {
+            //箭头向下变成向上
+            obj.removeClass('fa-angle-double-up').addClass('fa-angle-double-down');
+            //文字变成写评论
+            objSp.html('写评论');
+            //输入框隐藏
+            $('.player-comment-input').hide(200);
+        }
+    })
+
+
+    //监听输入的字数
+    $(document).on("input", "textarea[name=commentinput]", function () {
+        var val = $(this).val();
+        var obj = $(this).siblings('.p1').children().eq(0);
+        obj.html(val.length)
+        if (val.length > 30) {
+            obj.css('color', '#f00');
+        } else {
+            obj.css('color', '');
+        }
+    })
+
+
+    //点击发送按钮
+    $(document).on('click', '.player-comment-input .p2', function () {
+        var that = $(this);
+        var content = $.trim(that.siblings('textarea').val());
+        var dat = $('.player-comment-write p').children();
+        var num = that.siblings('.p1').children().eq(0);
+        //判断内容是否为空
+        if (content.length < 1) {
+            layer.msg('评论内容不能为空', {time: 1500});
+            return false;
+        }
+        //判断输入的字符长度
+        if (content.length > 30) {
+            layer.msg('评论内容不能超过30个字', {time: 1500});
+            return false;
+        }
+
+        $.ajax({
+            type: "POST",//请求方式
+            url: "/green/comment/addcomment.html",//地址，就是json文件的请求路径
+            data: {id: id, com_id: competitor_id, content: content},
+            dataType: "json",//数据类型可以为 text xml json  script  jsonp
+            success: function (result) {
+                if (result.code == 1) {
+                    if (result.data.is_audit == 1) {
+                                                runBarrage(content);
+                                                layer.msg('评论成功', {time: 1500})
+                        var li_html = '<li class="bor7-1-user" data-type="0">\n';
+                        if (result.data.avatar == '') {
+                            li_html += '<div class="left"><img src="/static/black/images/user00.jpg"></div>\n';
+                        } else {
+                            li_html += '<div class="left"><img src="' + result.data.avatar + '"></div>\n';
+                        }
+                        li_html += '<div class="right">\n' +
+                                '                <p class="p1">' + result.data.content + '</p>\n' +
+                                '                <p class="p2">' + result.data.create_time + '</p>\n' +
+                                '            </div>\n' +
+                                '        </li>';
+                        $(".player-comment-list").prepend(li_html);
+                    } else {
+                        layer.msg('评论成功,请等待管理员审核', {time: 1500})
+                    }
+
+                    //隐藏评论输入
+                    that.parent().hide(200);
+                    //箭头改为向下
+                    dat.eq(0).removeClass('fa-angle-double-up').addClass('fa-angle-double-down');
+                    //文字改为写评论
+                    dat.eq(1).html('写评论');
+                    //清空输入
+                    that.siblings('textarea').val('');
+                    //监听数字回0
+                    num.html('0')
+                } else {
+                    layer.msg(result.msg, {time: 1500})
+                }
+            }
+        })
+    })
+
+    //普通投票
+        //投票
+    $(document).on("click", ".add-vote", function (ev) {
+        addVote();
+    });
+    $(document).on("click", ".pop-vote-bg", function () {
+        $('.ewm-in-pop').html("");
+    });
+
+    data:{
+      vote_status:1,
+      vote_text:{
+        vo_type:3,
+        fonts:90
+      }
+    }
+    
+    //投票
+    function addVote() {
+        var vote_json = {'captcha':$("input[name=captcha_value]").val()};
+        $.ajax({
+            // 获取id，challenge，success（是否启用failback）
+            url: "/green/index/addvote/id/v8d484zzx/com_id/7bu4qmjxq.html", // 加随机数防止缓存
+            type: "POST",
+            data: vote_json,
+            dataType: "json",
+            success: function (result) {
+                console.log(result);
+                if (result.code == 1 || result.code == 0) {
+                    if (result.data.vote_status == 1 && ((result.data.vote_text.vo_type == 3 && 0 == 0) || (result.data.vote_text.vo_type == 1 && result.data.vote_text.fun_vote_skip_img))) {
+                        if(result.data.vote_text.vo_type == 1){
+                            result.data.vote_text.fun_vote_img = result.data.vote_text.fun_vote_skip_img;
+                        }
+                        var text = result.data.vote_text.fonts;
+                        if (result.code == 0) {
+                            if (result.data) {
+                                text = result.msg;
+                            } else {
+                                layer.msg(result.msg);
+                                return false;
+                            }
+                        }
+                        //投票后提示弹窗
+                        //投票后台提示弹窗
+                        var html = '<div class="pop-vote-body">'+
+                            '<div class="pop-vote-bg"></div>'+
+                            '<div class="pop-vote">'+
+                            '<div class="tit">'+text+'</div>'+
+                            '<div class="main"><a href="'+result.data.vote_text.url+'"><img src="'+result.data.vote_text.fun_vote_img+'"></a></div>'+
+                            '</div>'+
+                            '</div>';
+                        $('.ewm-in-pop').html(html);
+                    } else {
+                        if (result.code == 0) {
+                            layer.msg(result.msg);
+                        }else {
+                            layer.msg("点赞成功");
+                        }
+                        if(result.data.vo_type != 0 && result.data.vo_type != 3){
+                            setTimeout(function () {
+                                location.href = result.data.vote_text.url;
+                            },1000);
+                            return false;
+                        }
+                    }
+                    if (result.code == 1) {
+                        updateInfo();
+                    }
+                }else if (result.code == 2) {
+                    var html = '<div class="ewm-atten-pop"><div class="pop-atten-bg">\n' +
+                            '</div>\n' +
+                            '  <div class="pop-atten-container">\n' +
+                            '    <div class="pop-atten">\n' +
+                            '      <p class="p1">如何参与活动</p>\n' +
+                            '      <p class="p2">长按下方图片，点击识别二维码</p>\n' +
+                            '      <div class="pop-atten-img"><img src="' + result.data.vote_text.fun_vote_img + '" alt=""></div>\n' +
+                            '      <p class="p2">' + result.data.vote_text.fonts + '</p>\n' +
+                            '    </div>\n' +
+                            '  </div></div>';
+                    $('.ewm-in-pop').html(html);
+                } else {
+                    layer.msg(result.msg);
+                }
+            }
+        });
+    }
+
+    //更新信息
+    function updateInfo() {
+        $.ajax({
+            // 获取id，challenge，success（是否启用failback）
+            url: "/green/competitor/updateinfo/id/v8d484zzx/com_id/7bu4qmjxq.html", // 加随机数防止缓存
+            type: "POST",
+            dataType: "json",
+            success: function (result) {
+                if(result.code==1){
+                    var html='';
+                    var ranking = result.data.ranking;
+                    for (var i in ranking) {
+                        html += '<a href="'+ranking[i].url+'">';
+                        html += '    <li>';
+                        html += '        <p class="p1"><img src="/static/green/images/hg'+ranking[i].index+'.png"></p>';
+                        html += '        <p class="p2"><img src="'+ranking[i].first_image+'"></p>';
+                        html += '        <p class="p3 txt0-2-user">'+ranking[i].competitor_name+'</p>';
+                        html += '        <p class="p4">赞数</p>';
+                        html += '        <p class="p5">'+ranking[i].sum_ticket_num+'</p>';
+                        html += '    </li>';
+                        html += '</a>';
+                    }
+                    $('.player-ranking-main').html(html);
+                    $('.bor2-tit-user').eq(1).find('.p2').text(result.data.sort.sum_ticket_num);
+                    $('.bor2-tit-user').eq(2).find('.p2').text(result.data.sort.sum_browse_num);
+                    $('.bor2-tit-user').eq(3).find('.p2').text(result.data.sort.sum_money_num);
+                    var html='';
+                    html += '<p class="p1"><span class="icon-tit"><i class="icon iconfont">&#xe7bd;</i></span>排名：第'+result.data.sort.sort+'名</p>';
+                    html += '<p class="list">';
+                    html += '    <span class="icon-tit"><i class="fa fa-hand-o-up"></i></span>与第一名差 '+result.data.sort.one+' <span class="call-unit">赞</span>与上一名差'+result.data.sort.prev+'<span class="call-unit">赞</span>';
+                    html += '</p>';
+                    $('.players-gap').html(html);
+                }
+            }
+        });
+    }
+
+    //轮播图
+    var mySwiper = new Swiper('.player-banner-lunbo', {
+        autoplay: {delay: 3000},   	//切换时间
+        direction: 'horizontal',   //切换方向
+        loop: true,         		//循环轮播
+        initialSlide: 0,      	//初始化展示
+        grabCursor: true,      	//鼠标移动变成手型
+        roundLengths: true,    	//参数取整
+        autoHeight: true,       	//高度随内容变化
+        preloadImages: false,    	//图片加载
+        navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+        }
+    });
+
+    // 判断选手报名字段信息
+    $(document).ready(function () {
+        var lg = $('.players-num').find('.list').length;
+        console.log(lg);
+        if (lg == 3) {
+            $('.players-num .list').css({width: "33%"}).eq(2).removeClass('three');
+        } else {
+            $('.players-num .list').css({width: "25%"}).eq(2).addClass('three');
+        }
+    })
+
+</script>
+</body>
+</html>

@@ -1,0 +1,7 @@
+[defaults]
+project=test-project
+url=https://sentry.rong360.com/
+org=sentry
+
+[auth]
+token=7a59dcefd9a747aaa736515811362829363833cbe64c4d4991e91afae9ed5afa
