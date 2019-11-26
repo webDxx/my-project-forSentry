@@ -1,7 +1,7 @@
 <template>
   <div class="test-body">
     <rSelect :config="config" :ref="config.name"></rSelect>
-    <img src="https://pubsto.ianguo.com/insure/da5120b111f727e13746d1ea2c980921.jpg" alt />
+    <img src="ttps://pubsto.ianguo.com/insure/da5120b111f727e13746d1ea2c980921.jpg" alt />
     <rLoading />
   </div>
 </template>

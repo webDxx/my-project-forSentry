@@ -57,7 +57,7 @@ module.exports = {
     plugins: [
       new SentryPlugin({
         release: '3.0.0.0.0',
-        include: './dist/static',
+        include: 'https://github.com/webDxx/my-project-forSentry.git/dist/static',
         ignore: ['node_modules', 'webpack.config.js']
       })
     ]
