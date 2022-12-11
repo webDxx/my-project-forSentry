@@ -18,7 +18,7 @@
     "@types/express": "^4.17.1",
     "awe-dnd": "^0.3.4",
     "axios": "^0.19.0",
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "git": "^0.1.5",
     "sortablejs": "^1.9.0",
     "view-design": "^4.0.0",
